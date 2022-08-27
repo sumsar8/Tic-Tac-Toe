@@ -13,14 +13,37 @@
                 margin-right: auto;
                 display: block;
             }
-            h1{
-                display:none;
+    
+
+            .scorebox{
+                display:flex;
+                justify-content: space-between;
+                margin:20px;
+                margin-bottom:0px;
+            }
+            h2{
+                font-size: 40px;
+                height:10px;
+            }
+            .player1{
+                color:blue;
+            }
+            .player2{
+                color:yellow;
+            }
+            #winnertext{
+                text-align: center;
             }
         </style>
     </head>
     <body id="body">
         <canvas id="canvas" onclick="move()"></canvas>
+        <div class="scorebox">
+            <h2 class="player1"id="p1">0</p>
+            <h2 class="player2" id="p2">0</p></div>
+
         <h1 id="winnertext"></h1>
+
     </body>
     <script src="script.js"></script>
 </html>

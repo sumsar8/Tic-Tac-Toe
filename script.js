@@ -3,7 +3,8 @@ var ctx = c.getContext("2d");
 ctx.canvas.width = 753;
 ctx.canvas.height = 753;
 let board = [];
-
+let p3 = 0;
+let p4 = 0;
 for (let i = 0; i < 3; i++) {
     let subarray = [];
 
@@ -52,6 +53,11 @@ function move() {
             p1 = true;
         }
         wincheck();
+        if (!failcheck() && run){
+            setTimeout(() => {
+                reset();
+            }, 2000);
+        }
     }
     draw();
     }
@@ -145,13 +151,44 @@ function wincheck() {
         }
     }
 }
+
 function end(winner) {
     run = false;
-    document.getElementById("winnertext").style.display = "inherit"
-
     if (winner == 0) {
         document.getElementById("winnertext").innerHTML = "Blue win";
+        p3++;
+        document.getElementById("p1").innerHTML = p3;
     } else {
         document.getElementById("winnertext").innerHTML = "Yellow win";
+        p4++;
+        document.getElementById("p2").innerHTML = p4;
+
     }
+    setTimeout(() => {
+        reset();
+    }, 3000);
+}
+function reset(){
+    run = true;
+    board = [];
+    for (let i = 0; i < 3; i++) {
+        let subarray = [];
+    
+        for (let j = 0; j < 3; j++) {
+            subarray.push(2);
+        }
+        board.push(subarray);
+    }
+    draw();
+}
+function failcheck(){
+    
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if(board[i][j] == 2){
+                return true;
+            }
+        }        
+    }
+    return false;
 }
